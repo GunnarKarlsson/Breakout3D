@@ -21,6 +21,7 @@ public:
     void initializeGL();
     void resizeGL(int width, int height);
     void paintGL();
+    bool eventFilter(QObject *object, QEvent *event);
 
 private:
     void setViewport(float x, float y, int w, int h);

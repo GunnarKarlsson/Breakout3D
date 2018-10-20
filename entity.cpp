@@ -69,6 +69,15 @@ void Entity::initialize(float x, float y, float inDx, float inDy) {
     visible = true;
 }
 
+
+void Entity::moveLeft() {
+    xPos -= 0.5;
+}
+
+void Entity::moveRight() {
+    xPos += 0.5;
+}
+
 void Entity::update() {
     xPos += (dx * velocity);
     yPos += (dy * velocity);

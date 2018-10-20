@@ -1,4 +1,5 @@
 #include "gamewindow.h"
+#include <QKeyEvent>
 #include <math.h>
 #include <string>
 #include <string.h>
@@ -74,7 +75,7 @@ void GameWindow::paintGL() {
 }
 
 void GameWindow::updateScene(int worldWidth, int worldHeight) {
-
+    installEventFilter(this);
 }
 
 void GameWindow::setViewport(float x, float y, int width, int height) {
@@ -91,4 +92,23 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     }
 
     paddle->render(view, projection, basicShader);
+}
+
+bool GameWindow::eventFilter( QObject* object, QEvent* event) {
+    switch(event->type()) {
+    case QEvent::KeyPress:{
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        switch (keyEvent->key()) {
+            case Qt::Key_Right:
+            paddle->moveRight();
+            break;
+        case Qt::Key_Left:
+            paddle->moveLeft();
+            break;
+        default:
+            break;
+        }
+    }
+        return true;
+    }
 }
