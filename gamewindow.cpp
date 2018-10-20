@@ -55,7 +55,7 @@ void GameWindow::setViewport(float x, float y, int width, int height) {
 
 void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) {
     glm::mat4 view = camera->GetViewMatrix();
-    glm::mat4 projection = glm::ortho(x, (float)worldWidth, (float)worldHeight, y, (float)NEAR_LIMIT, (float)FAR_LIMIT);
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
     entity->render(view, projection, basicShader);
 }
