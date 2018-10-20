@@ -14,6 +14,8 @@ void AssetManager::loadAssets() {
     loadTexture(filePathBlock, blockTextureId);
     const char * filePathPaddle = "/Users/gunnarkarlsson/QtProjects/tuts/Breakout/pink.png";
     loadTexture(filePathPaddle, paddleTextureId);
+    const char * filePathBall = "/Users/gunnarkarlsson/QtProjects/tuts/Breakout/rainbow.png";
+    loadTexture(filePathBall, ballTextureId);
 }
 
 void AssetManager::loadTexture(const char* filePath, unsigned int &textureId) {

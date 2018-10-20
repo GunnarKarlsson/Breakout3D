@@ -33,6 +33,7 @@ private:
     Camera *camera;
     std::vector<Entity*> wallBricks;
     Entity *paddle;
+    Entity *ball;
 };
 
 #endif // MAINWINDOW_H

@@ -51,6 +51,10 @@ void GameWindow::initializeGL() {
     paddle->setTextureId(assetManager->paddleTextureId, assetManager->paddleTexCounter);
     paddle->initialize(0, -5, 0.0, 0.0);
 
+    ball = new Entity();
+    ball->setTextureId(assetManager->ballTextureId, assetManager->ballTexCounter);
+    ball->initialize(0, 0, 0.0, 0.0);
+
     basicShader = new BasicShader();
     basicShader->compile();
 
@@ -92,6 +96,7 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     }
 
     paddle->render(view, projection, basicShader);
+    ball->render(view, projection, basicShader);
 }
 
 bool GameWindow::eventFilter( QObject* object, QEvent* event) {
