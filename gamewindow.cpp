@@ -25,6 +25,27 @@ void GameWindow::initializeGL() {
     assetManager = new AssetManager();
     assetManager->loadAssets();
 
+    camera = new Camera(glm::vec3(0.0f, 0.0f, 10.0f));
+
+    for (int i = 0; i < 11; i++) {
+        //left wall
+        Entity *entityLeft = new Entity();
+        entityLeft->setTextureId(assetManager->blockTextureId);
+        entityLeft->initialize(-5, i-5, 0.0, 0.0);
+        wallBricks.push_back(entityLeft);
+        //right wall
+        Entity *entityRight = new Entity();
+        entityRight->setTextureId(assetManager->blockTextureId);
+        entityRight->initialize(5, i-5, 0.0, 0.0);
+        wallBricks.push_back(entityRight);
+        //top
+        Entity *entityTop = new Entity();
+        entityTop->setTextureId(assetManager->blockTextureId);
+        entityTop->initialize(i-5, 6, 0.0, 0.0);
+        wallBricks.push_back(entityTop);
+    }
+
+
     entity = new Entity();
     entity->setTextureId(assetManager->blockTextureId);
 
@@ -45,7 +66,7 @@ void GameWindow::resizeGL(int width, int height) {
 void GameWindow::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(1.0, 0.3, 0.5, 1.0);
-    camera = new Camera(glm::vec3(0.0f, 0.0f, 3.0f));
+
     setViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     updateScene(0, 0);
     renderScene(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -64,5 +85,7 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     glm::mat4 view = camera->GetViewMatrix();
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
-    entity->render(view, projection, basicShader);
+    for (int i = 0; i < wallBricks.size(); i++) {
+        wallBricks[i]->render(view, projection, basicShader);
+    }
 }

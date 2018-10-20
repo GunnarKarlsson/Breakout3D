@@ -31,6 +31,7 @@ private:
     QTimer *timer;
     Camera *camera;
     Entity *entity;
+    std::vector<Entity*> wallBricks;
 };
 
 #endif // MAINWINDOW_H
