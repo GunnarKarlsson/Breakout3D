@@ -9,6 +9,7 @@
 #include "basicshader.h"
 #include "camera.h"
 #include "entity.h"
+#include "skybox.h"
 
 
 class GameWindow : public QOpenGLWindow, protected QOpenGLFunctions
@@ -39,6 +40,7 @@ private:
     int collisionCoolDown = 0;
     glm::vec3 lightPos = glm::vec3(0.0, 0.0, 0.0);
     glm::vec3 lightColor = glm::vec3(1.0, 1.0, 1.0);
+    Skybox *skybox;
 };
 
 #endif // MAINWINDOW_H

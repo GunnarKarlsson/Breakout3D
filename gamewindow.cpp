@@ -78,6 +78,9 @@ void GameWindow::initializeGL() {
     basicShader = new BasicShader();
     basicShader->compile();
 
+    skybox = new Skybox();
+    skybox->setTextureId(assetManager->skyboxTextureId);
+
     glEnable(GL_DEPTH_TEST);
 
     timer = new QTimer(this);
@@ -124,9 +127,8 @@ void GameWindow::setViewport(float x, float y, int width, int height) {
 }
 
 void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) {
-    qDebug() << "renderScene" << endl;
     glm::mat4 view = camera->GetViewMatrix();
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 700.0f);
 
     for (int i = 0; i < wallBricks.size(); i++) {
         wallBricks[i]->render(view, projection, lightPos, lightColor, basicShader);
@@ -138,6 +140,9 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
 
     paddle->render(view, projection, lightPos, lightColor, basicShader);
     ball->render(view, projection, lightPos, lightColor, basicShader);
+
+    glm::mat4 skyboxView = glm::mat4(glm::mat3(camera->GetViewMatrix())); // remove translation from the view matrix
+    skybox->update(skyboxView, projection);
 }
 
 bool GameWindow::eventFilter( QObject* object, QEvent* event) {

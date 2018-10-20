@@ -31,7 +31,9 @@ SOURCES += \
     basicshader.cpp \
     entity.cpp \
     gamewindow.cpp \
-    assetmanager.cpp
+    assetmanager.cpp \
+    skybox.cpp \
+    skyboxshader.cpp
 
 HEADERS += \
     shader.h \
@@ -43,7 +45,9 @@ HEADERS += \
     gamewindow.h \
     assetmanager.h \
     stb_image.h \
-    collision.h
+    collision.h \
+    skybox.h \
+    skyboxshader.h
 
 FORMS +=
 
@@ -54,7 +58,15 @@ DISTFILES += \
     minecraft_bricks.png \
     pink.png \
     rainbow.png \
-    creeper.png
+    creeper.png \
+    skybox.vert \
+    skybox.frag \
+    SKY_BACK.png \
+    SKY_DOWN.png \
+    SKY_FRONT.png \
+    SKY_LEFT.png \
+    SKY_RIGHT.png \
+    SKY_UP.png
 
 RESOURCES += \
     resources.qrc
