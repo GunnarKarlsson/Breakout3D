@@ -42,7 +42,8 @@ HEADERS += \
     common.h \
     gamewindow.h \
     assetmanager.h \
-    stb_image.h
+    stb_image.h \
+    collision.h
 
 FORMS +=
 

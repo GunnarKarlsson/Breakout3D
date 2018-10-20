@@ -34,6 +34,8 @@ private:
     std::vector<Entity*> wallBricks;
     Entity *paddle;
     Entity *ball;
+    bool hasCollided = false;
+    int collisionCoolDown = 0;
 };
 
 #endif // MAINWINDOW_H

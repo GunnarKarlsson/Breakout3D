@@ -3,6 +3,7 @@
 #include <math.h>
 #include <string>
 #include <string.h>
+#include "collision.h"
 
 
 GameWindow::GameWindow() : QOpenGLWindow(QOpenGLWindow::NoPartialUpdate) {
@@ -82,7 +83,14 @@ void GameWindow::paintGL() {
 }
 
 void GameWindow::updateScene(int worldWidth, int worldHeight) {
-    ball->update(-5, -5, 5, 5);
+    ball->update(-5, -10, 5, 5);
+    if (haveCollided(paddle, ball) && collisionCoolDown == 0) {
+        ball->dy *= -1.0;
+        hasCollided = true;
+        collisionCoolDown = 30;//half sec or so
+    } else if (collisionCoolDown > 0) {
+        --collisionCoolDown;
+    }
 }
 
 void GameWindow::setViewport(float x, float y, int width, int height) {

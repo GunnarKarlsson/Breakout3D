@@ -71,11 +71,11 @@ void Entity::initialize(float x, float y, float inDx, float inDy) {
 
 
 void Entity::moveLeft() {
-    xPos -= 0.5;
+    xPos -= 1.0;
 }
 
 void Entity::moveRight() {
-    xPos += 0.5;
+    xPos += 1.0;
 }
 
 void Entity::update() {
