@@ -30,7 +30,8 @@ SOURCES += \
     shader.cpp \
     basicshader.cpp \
     entity.cpp \
-    gamewindow.cpp
+    gamewindow.cpp \
+    assetmanager.cpp
 
 HEADERS += \
     shader.h \
@@ -39,14 +40,17 @@ HEADERS += \
     camera.h \
     stb_image.h \
     common.h \
-    gamewindow.h
+    gamewindow.h \
+    assetmanager.h \
+    stb_image.h
 
 FORMS +=
 
 DISTFILES += \
     basic.frag \
     basic.vert \
-    font.png
+    font.png \
+    minecraft_bricks.png
 
 RESOURCES += \
     resources.qrc

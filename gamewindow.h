@@ -5,6 +5,7 @@
 #include <QOpenGLFunctions>
 #include <QTimer>
 #include <vector>
+#include "assetmanager.h"
 #include "basicshader.h"
 #include "camera.h"
 #include "entity.h"
@@ -25,6 +26,7 @@ private:
     void setViewport(float x, float y, int w, int h);
     void updateScene(int worldWidth, int worldHeight);
     void renderScene(float x, float y, int worldWidth, int worldHeight);
+    AssetManager *assetManager;
     BasicShader *basicShader;
     QTimer *timer;
     Camera *camera;

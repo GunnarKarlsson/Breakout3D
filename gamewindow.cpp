@@ -22,7 +22,11 @@ void GameWindow::initializeGL() {
     qDebug() << "version: " << QLatin1String(reinterpret_cast<const char*>(glGetString(GL_VERSION)));
     qDebug() << "GSLS version: " << QLatin1String(reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION)));
 
+    assetManager = new AssetManager();
+    assetManager->loadAssets();
+
     entity = new Entity();
+    entity->setTextureId(assetManager->blockTextureId);
 
     basicShader = new BasicShader();
     basicShader->compile();
@@ -54,6 +58,7 @@ void GameWindow::setViewport(float x, float y, int width, int height) {
 }
 
 void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) {
+    qDebug() << "renderScene" << endl;
     glm::mat4 view = camera->GetViewMatrix();
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 

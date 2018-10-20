@@ -42,18 +42,20 @@ void Entity::setSize(int size) {
 }
 
 void Entity::render(glm::mat4 &view, glm::mat4 &projection, Shader *shader) {
-    if (visible) {
+    //if (visible) {
+    shader->setInt("texture1", 0);
     glm::mat4 model = glm::mat4(1.0);
-    model = glm::translate(model, glm::vec3(xPos, yPos, -1.0));
+    model = glm::translate(model, glm::vec3(xPos, yPos, -2.0));
     shader->use();
     shader->setMat4("model", model);
     shader->setMat4("view", view);
     shader->setMat4("projection", projection);
 
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureId);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
-    }
+    //}
 }
 
 void Entity::initialize(float x, float y, float inDx, float inDy) {
