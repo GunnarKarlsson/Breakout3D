@@ -31,6 +31,8 @@ void GameWindow::initializeGL() {
     basicShader = new BasicShader();
     basicShader->compile();
 
+    glEnable(GL_DEPTH_TEST);
+
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(20);
@@ -41,7 +43,7 @@ void GameWindow::resizeGL(int width, int height) {
 }
 
 void GameWindow::paintGL() {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(1.0, 0.3, 0.5, 1.0);
     camera = new Camera(glm::vec3(0.0f, 0.0f, 3.0f));
     setViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);

@@ -46,6 +46,7 @@ void Entity::render(glm::mat4 &view, glm::mat4 &projection, Shader *shader) {
     shader->setInt("texture1", 0);
     glm::mat4 model = glm::mat4(1.0);
     model = glm::translate(model, glm::vec3(xPos, yPos, -2.0));
+    model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1,1,1));
     shader->use();
     shader->setMat4("model", model);
     shader->setMat4("view", view);
