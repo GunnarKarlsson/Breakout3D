@@ -42,8 +42,12 @@ void Entity::setSize(int size) {
     this->size =  size;
 }
 
+bool Entity::setVisible(bool value) {
+    this->visible = value;
+}
+
 void Entity::render(glm::mat4 &view, glm::mat4 &projection, Shader *shader) {
-    //if (visible) {
+  if (visible) {
     shader->setInt("texture0", textureCounter);
     glm::mat4 model = glm::mat4(1.0);
     model = glm::translate(model, glm::vec3(xPos, yPos, -10.0));
@@ -58,7 +62,7 @@ void Entity::render(glm::mat4 &view, glm::mat4 &projection, Shader *shader) {
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindTexture(GL_TEXTURE_2D, 0);
-    //}
+   }
 }
 
 void Entity::initialize(float x, float y, float inDx, float inDy) {

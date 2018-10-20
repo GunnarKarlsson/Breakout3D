@@ -18,6 +18,7 @@ public:
     void initialize(float x, float y, float inDx, float inDy);
     void hide();
     bool isVisible();
+    bool setVisible(bool value);
     void moveLeft();
     void moveRight();
     float xPos;

@@ -32,6 +32,7 @@ private:
     QTimer *timer;
     Camera *camera;
     std::vector<Entity*> wallBricks;
+    std::vector<Entity*> bricks;
     Entity *paddle;
     Entity *ball;
     bool hasCollided = false;

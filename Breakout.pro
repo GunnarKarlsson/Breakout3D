@@ -53,7 +53,8 @@ DISTFILES += \
     font.png \
     minecraft_bricks.png \
     pink.png \
-    rainbow.png
+    rainbow.png \
+    creeper.png
 
 RESOURCES += \
     resources.qrc

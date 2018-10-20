@@ -50,6 +50,22 @@ void GameWindow::initializeGL() {
         wallBricks.push_back(entityTop);
     }
 
+    //create target bricks
+    for (int i = 0; i < 9; i++) {
+        Entity *targetTop = new Entity();
+        targetTop->setTextureId(assetManager->targetTextureId, assetManager->targetTexCounter);
+        targetTop->initialize(-4+i, 5.0, 0.0, 0.0);
+        bricks.push_back(targetTop);
+        Entity *targetMiddle = new Entity();
+        targetMiddle->setTextureId(assetManager->targetTextureId, assetManager->targetTexCounter);
+        targetMiddle->initialize(-4+i, 4.0, 0.0, 0.0);
+        bricks.push_back(targetMiddle);
+        Entity *targetBottom = new Entity();
+        targetBottom->setTextureId(assetManager->targetTextureId, assetManager->targetTexCounter);
+        targetBottom->initialize(-4+i, 3.0, 0.0, 0.0);
+        bricks.push_back(targetBottom);
+    }
+
     paddle = new Entity();
     paddle->setTextureId(assetManager->paddleTextureId, assetManager->paddleTexCounter);
     paddle->initialize(0, -5, 0.0, 0.0);
@@ -91,6 +107,17 @@ void GameWindow::updateScene(int worldWidth, int worldHeight) {
     } else if (collisionCoolDown > 0) {
         --collisionCoolDown;
     }
+    for (int i = 0; i < bricks.size(); i++) {
+        Entity *e = bricks[i];
+        if (e->isVisible()) {
+            if (haveCollided(e, ball)) {
+                ball->dy *= -1.0;
+                e->setVisible(false);
+                break;
+            }
+        }
+    }
+
 }
 
 void GameWindow::setViewport(float x, float y, int width, int height) {
@@ -104,6 +131,10 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
 
     for (int i = 0; i < wallBricks.size(); i++) {
         wallBricks[i]->render(view, projection, basicShader);
+    }
+
+    for (int i = 0; i < bricks.size(); i++) {
+        bricks[i]->render(view, projection, basicShader);
     }
 
     paddle->render(view, projection, basicShader);
