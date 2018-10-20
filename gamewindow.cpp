@@ -6,7 +6,7 @@
 
 
 GameWindow::GameWindow() : QOpenGLWindow(QOpenGLWindow::NoPartialUpdate) {
-
+    installEventFilter(this);
 }
 
 GameWindow::~GameWindow() {
@@ -14,6 +14,8 @@ GameWindow::~GameWindow() {
     delete timer;
     delete camera;
     delete paddle;
+    delete ball;
+    wallBricks.clear();
 }
 
 void GameWindow::initializeGL() {
@@ -53,7 +55,8 @@ void GameWindow::initializeGL() {
 
     ball = new Entity();
     ball->setTextureId(assetManager->ballTextureId, assetManager->ballTexCounter);
-    ball->initialize(0, 0, 0.0, 0.0);
+    ball->setVelocity(1.0);
+    ball->initialize(0, 2, 0.2, 0.2);
 
     basicShader = new BasicShader();
     basicShader->compile();
@@ -74,12 +77,12 @@ void GameWindow::paintGL() {
     glClearColor(0.4, 0.6, 0.8, 1.0);
 
     setViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    updateScene(0, 0);
+    updateScene(SCREEN_WIDTH, SCREEN_HEIGHT);
     renderScene(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void GameWindow::updateScene(int worldWidth, int worldHeight) {
-    installEventFilter(this);
+    ball->update(-5, -5, 5, 5);
 }
 
 void GameWindow::setViewport(float x, float y, int width, int height) {

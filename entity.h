@@ -74,7 +74,7 @@ private:
     };
 
     int velocity = 0;
-    int size;
+    int size = 1;
     int textureCounter = 0;
 };
 
