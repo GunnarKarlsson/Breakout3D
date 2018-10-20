@@ -73,7 +73,7 @@ void GameWindow::initializeGL() {
     ball = new Entity();
     ball->setTextureId(assetManager->ballTextureId, assetManager->ballTexCounter);
     ball->setVelocity(1.0);
-    ball->initialize(0, 2, 0.2, 0.2);
+    ball->initialize(0, 1.0, 0.05, 0.05);
 
     basicShader = new BasicShader();
     basicShader->compile();
@@ -117,7 +117,6 @@ void GameWindow::updateScene(int worldWidth, int worldHeight) {
             }
         }
     }
-
 }
 
 void GameWindow::setViewport(float x, float y, int width, int height) {

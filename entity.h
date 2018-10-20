@@ -74,7 +74,7 @@ private:
         -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
     };
 
-    int velocity = 0;
+    float velocity = 0.0;
     int size = 1;
     int textureCounter = 0;
 };
