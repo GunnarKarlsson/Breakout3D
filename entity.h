@@ -14,7 +14,7 @@ public:
     void setSize(int size);
     void update();
     void update(int minX, int minY, int maxX, int maxY);
-    void render(glm::mat4 &view, glm::mat4 &projection, Shader *shader);
+    void render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, Shader *shader);
     void initialize(float x, float y, float inDx, float inDy);
     void hide();
     bool isVisible();
@@ -77,6 +77,7 @@ private:
     float velocity = 0.0;
     int size = 1;
     int textureCounter = 0;
+    glm::vec3 objectColor = glm::vec3(0.0,1.0,1.0);
 };
 
 #endif // ENTITY_H

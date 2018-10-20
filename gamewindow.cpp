@@ -129,15 +129,15 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
     for (int i = 0; i < wallBricks.size(); i++) {
-        wallBricks[i]->render(view, projection, basicShader);
+        wallBricks[i]->render(view, projection, lightPos, lightColor, basicShader);
     }
 
     for (int i = 0; i < bricks.size(); i++) {
-        bricks[i]->render(view, projection, basicShader);
+        bricks[i]->render(view, projection, lightPos, lightColor, basicShader);
     }
 
-    paddle->render(view, projection, basicShader);
-    ball->render(view, projection, basicShader);
+    paddle->render(view, projection, lightPos, lightColor, basicShader);
+    ball->render(view, projection, lightPos, lightColor, basicShader);
 }
 
 bool GameWindow::eventFilter( QObject* object, QEvent* event) {
