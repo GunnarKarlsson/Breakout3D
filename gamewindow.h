@@ -30,8 +30,8 @@ private:
     BasicShader *basicShader;
     QTimer *timer;
     Camera *camera;
-    Entity *entity;
     std::vector<Entity*> wallBricks;
+    Entity *paddle;
 };
 
 #endif // MAINWINDOW_H

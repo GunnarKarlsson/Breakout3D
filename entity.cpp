@@ -29,8 +29,9 @@ Entity::~Entity() {
     glDeleteBuffers(1, &VBO);
 }
 
-void Entity::setTextureId(unsigned int &id) {
+void Entity::setTextureId(unsigned int &id, int texCounter) {
     textureId = id;
+    textureCounter = texCounter;
 }
 
 void Entity::setVelocity(int velocity) {
@@ -43,7 +44,7 @@ void Entity::setSize(int size) {
 
 void Entity::render(glm::mat4 &view, glm::mat4 &projection, Shader *shader) {
     //if (visible) {
-    shader->setInt("texture1", 0);
+    shader->setInt("texture0", textureCounter);
     glm::mat4 model = glm::mat4(1.0);
     model = glm::translate(model, glm::vec3(xPos, yPos, -10.0));
     //model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1,1,1));
@@ -52,10 +53,11 @@ void Entity::render(glm::mat4 &view, glm::mat4 &projection, Shader *shader) {
     shader->setMat4("view", view);
     shader->setMat4("projection", projection);
 
-    glActiveTexture(GL_TEXTURE0);
+    glActiveTexture(GL_TEXTURE0 + textureCounter);
     glBindTexture(GL_TEXTURE_2D, textureId);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
+    glBindTexture(GL_TEXTURE_2D, 0);
     //}
 }
 

@@ -12,6 +12,8 @@ AssetManager::~AssetManager() {}
 void AssetManager::loadAssets() {
     const char * filePathBlock = "/Users/gunnarkarlsson/QtProjects/tuts/Breakout/minecraft_bricks.png";
     loadTexture(filePathBlock, blockTextureId);
+    const char * filePathPaddle = "/Users/gunnarkarlsson/QtProjects/tuts/Breakout/pink.png";
+    loadTexture(filePathPaddle, paddleTextureId);
 }
 
 void AssetManager::loadTexture(const char* filePath, unsigned int &textureId) {

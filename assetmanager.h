@@ -11,6 +11,9 @@ public:
     void loadAssets();
 
     unsigned int blockTextureId;
+    int blockTexCounter = 0;
+    unsigned int paddleTextureId;
+    int paddleTexCounter = 1;
 
 private:
     void loadTexture(const char* path, unsigned int &textureId);

@@ -50,7 +50,8 @@ DISTFILES += \
     basic.frag \
     basic.vert \
     font.png \
-    minecraft_bricks.png
+    minecraft_bricks.png \
+    pink.png
 
 RESOURCES += \
     resources.qrc

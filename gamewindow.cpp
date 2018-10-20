@@ -12,7 +12,7 @@ GameWindow::~GameWindow() {
     delete basicShader;
     delete timer;
     delete camera;
-    delete entity;
+    delete paddle;
 }
 
 void GameWindow::initializeGL() {
@@ -27,27 +27,28 @@ void GameWindow::initializeGL() {
 
     camera = new Camera(glm::vec3(0.0f, 0.0f, 10.0f));
 
+    //create frame
     for (int i = 0; i < 11; i++) {
         //left wall
         Entity *entityLeft = new Entity();
-        entityLeft->setTextureId(assetManager->blockTextureId);
+        entityLeft->setTextureId(assetManager->blockTextureId, assetManager->blockTexCounter);
         entityLeft->initialize(-5, i-5, 0.0, 0.0);
         wallBricks.push_back(entityLeft);
         //right wall
         Entity *entityRight = new Entity();
-        entityRight->setTextureId(assetManager->blockTextureId);
+        entityRight->setTextureId(assetManager->blockTextureId, assetManager->blockTexCounter);
         entityRight->initialize(5, i-5, 0.0, 0.0);
         wallBricks.push_back(entityRight);
         //top
         Entity *entityTop = new Entity();
-        entityTop->setTextureId(assetManager->blockTextureId);
+        entityTop->setTextureId(assetManager->blockTextureId, assetManager->blockTexCounter);
         entityTop->initialize(i-5, 6, 0.0, 0.0);
         wallBricks.push_back(entityTop);
     }
 
-
-    entity = new Entity();
-    entity->setTextureId(assetManager->blockTextureId);
+    paddle = new Entity();
+    paddle->setTextureId(assetManager->paddleTextureId, assetManager->paddleTexCounter);
+    paddle->initialize(0, -5, 0.0, 0.0);
 
     basicShader = new BasicShader();
     basicShader->compile();
@@ -65,7 +66,7 @@ void GameWindow::resizeGL(int width, int height) {
 
 void GameWindow::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(1.0, 0.3, 0.5, 1.0);
+    glClearColor(0.4, 0.6, 0.8, 1.0);
 
     setViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     updateScene(0, 0);
@@ -88,4 +89,6 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     for (int i = 0; i < wallBricks.size(); i++) {
         wallBricks[i]->render(view, projection, basicShader);
     }
+
+    paddle->render(view, projection, basicShader);
 }
