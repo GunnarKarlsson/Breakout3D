@@ -88,7 +88,7 @@ void Entity::update(int minX, int minY, int maxX, int maxY) {
     xPos += (dx * velocity);
     yPos += (dy * velocity);
 
-    if (xPos < (minX + size/2)) {
+    if (xPos < (minX + size)) {
         dx *=-1.0;
     }
 
@@ -96,7 +96,7 @@ void Entity::update(int minX, int minY, int maxX, int maxY) {
         dy *= -1.0;
     }
 
-    if (xPos > (maxX - size/2)) {
+    if (xPos > (maxX - size)) {
         dx *=-1.0;
     }
 
