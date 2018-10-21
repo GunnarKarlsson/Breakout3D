@@ -80,6 +80,9 @@ void GameWindow::initializeGL() {
     basicShader = new BasicShader();
     basicShader->compile();
 
+    particleShader = new ParticleShader();
+    particleShader->compile();
+
     skybox = new Skybox();
     skybox->setTextureId(assetManager->skyboxTextureId);
 
@@ -122,6 +125,9 @@ void GameWindow::updateScene(int worldWidth, int worldHeight) {
             }
         }
     }
+    if (particleEffect->isActive()) {
+        particleEffect->update();
+    }
 }
 
 void GameWindow::setViewport(float x, float y, int width, int height) {
@@ -143,12 +149,19 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     paddle->render(view, projection, lightPos, lightColor, basicShader);
     ball->render(view, projection, lightPos, lightColor, basicShader);
 
+    if (particleEffect->isActive()) {
+        particleEffect->render(view, projection, lightPos, lightColor, particleShader);
+    }
+
     glm::mat4 skyboxView = glm::mat4(glm::mat3(camera->GetViewMatrix())); // remove translation from the view matrix
-    skybox->update(skyboxView, projection);
+    skybox->update(skyboxView, projection);//TODO: rename to skybox->render
 }
 
 void GameWindow::startParticleEffect() {
     qDebug() << "start particle effect" << endl;
+    if (!particleEffect->isActive()) {
+        particleEffect->start();
+    }
 }
 
 bool GameWindow::eventFilter( QObject* object, QEvent* event) {

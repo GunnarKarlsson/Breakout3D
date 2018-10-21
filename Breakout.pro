@@ -35,7 +35,8 @@ SOURCES += \
     skybox.cpp \
     skyboxshader.cpp \
     particleeffect.cpp \
-    particleshader.cpp
+    particleshader.cpp \
+    particle.cpp
 
 HEADERS += \
     shader.h \
@@ -51,7 +52,8 @@ HEADERS += \
     skybox.h \
     skyboxshader.h \
     particleeffect.h \
-    particleshader.h
+    particleshader.h \
+    particle.h
 
 FORMS +=
 

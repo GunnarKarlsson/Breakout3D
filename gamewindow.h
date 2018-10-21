@@ -11,6 +11,7 @@
 #include "entity.h"
 #include "skybox.h"
 #include "particleeffect.h"
+#include "particleshader.h"
 
 class GameWindow : public QOpenGLWindow, protected QOpenGLFunctions
 {
@@ -31,6 +32,7 @@ private:
     void startParticleEffect();
     AssetManager *assetManager;
     BasicShader *basicShader;
+    ParticleShader *particleShader;
     QTimer *timer;
     Camera *camera;
     std::vector<Entity*> wallBricks;
