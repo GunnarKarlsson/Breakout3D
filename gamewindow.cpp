@@ -147,6 +147,10 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     skybox->update(skyboxView, projection);
 }
 
+void GameWindow::startParticleEffect() {
+    qDebug() << "start particle effect" << endl;
+}
+
 bool GameWindow::eventFilter( QObject* object, QEvent* event) {
     switch(event->type()) {
     case QEvent::KeyPress:{
@@ -157,6 +161,12 @@ bool GameWindow::eventFilter( QObject* object, QEvent* event) {
             break;
         case Qt::Key_Left:
             paddle->moveLeft();
+            break;
+        case Qt::Key_P:
+           startParticleEffect();
+            break;
+        case Qt::Key_Escape:
+            exit(0);
             break;
         default:
             break;

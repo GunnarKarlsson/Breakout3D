@@ -28,6 +28,7 @@ private:
     void setViewport(float x, float y, int w, int h);
     void updateScene(int worldWidth, int worldHeight);
     void renderScene(float x, float y, int worldWidth, int worldHeight);
+    void startParticleEffect();
     AssetManager *assetManager;
     BasicShader *basicShader;
     QTimer *timer;
