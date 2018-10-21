@@ -5,6 +5,7 @@
 #include "common.h"
 #include "particleshader.h"
 #include "particle.h"
+#include "pointlight.h"
 
 class ParticleEffect
 {
@@ -27,6 +28,7 @@ private:
     float particleSize = 0.2;
     bool active = false;
     std::vector<Particle*> particles;
+    PointLight pointLight;
 };
 
 #endif // PARTICLEEFFECT_H

@@ -65,7 +65,7 @@ void Particle::update(){
     }
 }
 
-void Particle::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, ParticleShader *shader){
+void Particle::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, PointLight &pointLight, ParticleShader *shader){
     if (visible && alive) {
         glm::mat4 model = glm::mat4(1.0);
         model = glm::translate(model, glm::vec3(xPos, yPos, -10.0 + zPos));

@@ -8,11 +8,9 @@ struct PointLight {
     float quadratic;
     vec3 ambient;
     vec3 diffuse;
-    vec3 specular;
     bool isOn;
 };
 
-uniform vec3 pointLightPos;
 uniform PointLight pointLight;
 uniform int materialDiffuse = 1;
 

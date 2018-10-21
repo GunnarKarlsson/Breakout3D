@@ -53,7 +53,8 @@ HEADERS += \
     skyboxshader.h \
     particleeffect.h \
     particleshader.h \
-    particle.h
+    particle.h \
+    pointlight.h
 
 FORMS +=
 

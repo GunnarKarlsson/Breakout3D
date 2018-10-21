@@ -2,7 +2,15 @@
 #include <random>
 
 ParticleEffect::ParticleEffect(){
-    reset();
+
+   pointLight.position = glm::vec3(0.0,0.0,-10.0);
+   pointLight.ambient = glm::vec3();
+   pointLight.diffuse = glm::vec3();
+   pointLight.constant = 1.0f;
+   pointLight.linear = 0.09f;
+   pointLight.quadratic = 0.032;
+
+   reset();
 }
 
 ParticleEffect::~ParticleEffect(){
@@ -12,6 +20,7 @@ ParticleEffect::~ParticleEffect(){
 void ParticleEffect::setPosition(int x, int y) {
     xPos = x;
     yPos = y;
+    pointLight.position = glm::vec3(xPos, yPos, -10.0);
 }
 
 void ParticleEffect::start() {
@@ -75,7 +84,7 @@ void ParticleEffect::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 li
         return;
     }
     for (int i = 0; i < particles.size(); i++) {
-        particles[i]->render(view, projection, lightPos, lightColor, shader);
+        particles[i]->render(view, projection, lightPos, lightColor, pointLight, shader);
     }
 }
 
