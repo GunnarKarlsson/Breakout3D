@@ -19,7 +19,7 @@ public:
     void reset();
 private:
     std::clock_t clockStart;
-    const double durationLimit = 50000;
+    const double durationLimit = 500000;//50000;
     double duration;
     int xPos = 0;
     int yPos = 0;

@@ -1,4 +1,5 @@
 #include "particleeffect.h"
+#include <random>
 
 ParticleEffect::ParticleEffect(){
     reset();
@@ -55,14 +56,16 @@ void ParticleEffect::update() {
 void ParticleEffect::reset() {
     clockStart = 0.0;
     particles.clear();
-    float velocity = 2.0;
+    float velocity = 4.0;
     int stepSize = 360/particleCount;
+    int n = 1800;
     for (int i = 0; i < particleCount; i ++) {
         Particle *particle = new Particle();
-        float dx = cos((3.14 * stepSize * i)/180) * 0.1;
-        float dy = sin((3.14 * stepSize * i)/180) * 0.1;
+        float dx = float(rand() % n - n/2)/(n*10);
+        float dy = float(rand() % n - n/2)/(n*10);
+        float dz = float(rand() % n - n/2)/(n*10);
         particle->setSize(particleSize);
-        particle->initialize(xPos, yPos, dx, dy, velocity);
+        particle->initialize(xPos, yPos, dx, dy, dz, velocity);
         particles.push_back(particle);
     }
 }

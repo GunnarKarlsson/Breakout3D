@@ -9,7 +9,7 @@ class Particle
 public:
     Particle();
     ~Particle();
-    void initialize(int x, int y, float inDx, float inDy, float vel);
+    void initialize(int x, int y, float inDx, float inDy, float inDz, float vel);
     void show();
     void hide();
     void update();
@@ -24,8 +24,10 @@ private:
     bool visible = false;
     float xPos;
     float yPos;
+    float zPos;
     float dx = 0.0;
     float dy = 0.0;
+    float dz = 0.0;
     float velocity = 1.0;
     unsigned int VBO, VAO;
     glm::vec3 objectColor = glm::vec3(1.0, 0.0, 1.0);
