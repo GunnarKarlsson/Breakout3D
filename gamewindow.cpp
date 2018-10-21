@@ -121,6 +121,12 @@ void GameWindow::updateScene(int worldWidth, int worldHeight) {
             if (haveCollided(e, ball)) {
                 ball->dy *= -1.0;
                 e->setVisible(false);
+                if (!particleEffect->isActive()) {
+                    qDebug() << "x: " << e->xPos << ", y:" << e->yPos << endl;
+                    particleEffect->setPosition(e->xPos, e->yPos);
+                    particleEffect->reset();
+                    particleEffect->start();
+                }
                 break;
             }
         }

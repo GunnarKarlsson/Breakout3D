@@ -8,12 +8,18 @@ ParticleEffect::~ParticleEffect(){
     particles.clear();
 }
 
+void ParticleEffect::setPosition(int x, int y) {
+    xPos = x;
+    yPos = y;
+}
+
 void ParticleEffect::start() {
     qDebug() << "ParticleEffect::start. Particles count: " << particles.size() << endl;
     for (int i = 0; i < particles.size(); i++) {
         particles[i]->show();
     }
     active = true;
+    clockStart = std::clock();
 }
 
 bool ParticleEffect::isActive() {
@@ -24,27 +30,37 @@ void ParticleEffect::update() {
     if (!active) {
         return;
     }
+
+    bool durationLimitReached = false;
+    duration = ( std::clock() - clockStart );
+    if (duration >= durationLimit) {
+        durationLimitReached = true;
+    }
+
     bool hasActiveParticle = false;
     for (int i = 0; i < particles.size(); i++) {
         particles[i]->update();
+
+
         if (particles[i]->isAlive()) {
             hasActiveParticle = true;
         }
     }
-    if (!hasActiveParticle) {
+    if (!hasActiveParticle || durationLimitReached) {
         active = false;
         reset();
     }
 }
 
 void ParticleEffect::reset() {
+    clockStart = 0.0;
     particles.clear();
     float velocity = 2.0;
     int stepSize = 360/particleCount;
     for (int i = 0; i < particleCount; i ++) {
         Particle *particle = new Particle();
-        float dx = cos((3.14 * stepSize * i)/180) * 0.01;
-        float dy = sin((3.14 * stepSize * i)/180) * 0.01;
+        float dx = cos((3.14 * stepSize * i)/180) * 0.1;
+        float dy = sin((3.14 * stepSize * i)/180) * 0.1;
         particle->setSize(particleSize);
         particle->initialize(xPos, yPos, dx, dy, velocity);
         particles.push_back(particle);

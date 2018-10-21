@@ -46,6 +46,10 @@ void Particle::setSize(float s) {
     size = s;
 }
 
+void Particle::setAlive(bool value) {
+    alive = value;
+}
+
 void Particle::update(){
     if (alive) {
         float deltaX = (dx * velocity);
@@ -57,7 +61,6 @@ void Particle::update(){
 
 void Particle::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, ParticleShader *shader){
     if (visible && alive) {
-        qDebug() << "Particle::render" << endl;
         glm::mat4 model = glm::mat4(1.0);
         model = glm::translate(model, glm::vec3(xPos, yPos, -10.0));
         model = glm::scale(model, glm::vec3(size, size, size));
