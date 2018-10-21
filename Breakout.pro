@@ -33,7 +33,9 @@ SOURCES += \
     gamewindow.cpp \
     assetmanager.cpp \
     skybox.cpp \
-    skyboxshader.cpp
+    skyboxshader.cpp \
+    particleeffect.cpp \
+    particleshader.cpp
 
 HEADERS += \
     shader.h \
@@ -47,7 +49,9 @@ HEADERS += \
     stb_image.h \
     collision.h \
     skybox.h \
-    skyboxshader.h
+    skyboxshader.h \
+    particleeffect.h \
+    particleshader.h
 
 FORMS +=
 
@@ -66,7 +70,9 @@ DISTFILES += \
     SKY_FRONT.png \
     SKY_LEFT.png \
     SKY_RIGHT.png \
-    SKY_UP.png
+    SKY_UP.png \
+    particle.vert \
+    particle.frag
 
 RESOURCES += \
     resources.qrc

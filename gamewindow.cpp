@@ -29,6 +29,8 @@ void GameWindow::initializeGL() {
     assetManager = new AssetManager();
     assetManager->loadAssets();
 
+    particleEffect = new ParticleEffect();
+
     camera = new Camera(glm::vec3(0.0f, 0.0f, 10.0f));
 
     //create frame
