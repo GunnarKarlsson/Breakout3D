@@ -77,6 +77,14 @@ void Particle::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos
         shader->setVec3("objectColor", objectColor);
         shader->setVec3("lightPos", lightPos);
         shader->setVec3("lightColor", lightColor);
+
+        shader->setVec3("pointLight.position", pointLight.position);
+        shader->setVec3("pointLight.ambient", pointLight.ambient);
+        shader->setVec3("pointLight.diffuse", pointLight.diffuse);
+        shader->setFloat("pointLight.constant", pointLight.constant);
+        shader->setFloat("pointLight.linear", pointLight.linear);
+        shader->setFloat("pointLight.quadratic", pointLight.quadratic);
+
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
     }
