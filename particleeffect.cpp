@@ -18,6 +18,19 @@ ParticleEffect::~ParticleEffect(){
     particles.clear();
 }
 
+float ParticleEffect::getIntensity() {
+    if (isActive()) {
+        if (duration < durationLimit/2) {
+            intensity += 0.02;
+        } else if (intensity > 0.2){
+            intensity -= 0.02;
+        }
+    } else {
+        intensity = 0.0;
+    }
+    return intensity;
+}
+
 PointLight ParticleEffect::getPointLight() const {
     return pointLight;
 }
@@ -36,6 +49,7 @@ void ParticleEffect::start() {
     }
     active = true;
     clockStart = std::clock();
+    intensity = 0.0;
 }
 
 bool ParticleEffect::isActive() {

@@ -12,6 +12,7 @@ uniform vec3 objectColor;
 
 uniform vec3 pointPosition;
 uniform bool isOn;
+uniform float intensity;
 
 uniform sampler2D texture0;
 
@@ -34,8 +35,8 @@ void main()
          float distance  = length(pointPosition - FragPos);
          float attenuation = 1.0 / (distance*distance*0.05);
 
-         ambient  *= attenuation;
-         diffuse   *= attenuation;
+         ambient  *= attenuation*intensity;
+         diffuse   *= attenuation*intensity;
 
          result = (ambient + diffuse) * texture(texture0, TexCoord).rgb;
      }
