@@ -53,7 +53,7 @@ void Entity::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, 
   if (visible) {
     shader->setInt("texture0", textureCounter);
     glm::mat4 model = glm::mat4(1.0);
-    model = glm::translate(model, glm::vec3(xPos, yPos, -10.0));
+    model = glm::translate(model, glm::vec3(xPos, yPos, zPos));
     shader->use();
     shader->setMat4("model", model);
     shader->setMat4("view", view);
@@ -71,8 +71,13 @@ void Entity::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, 
 }
 
 void Entity::initialize(float x, float y, float inDx, float inDy) {
+    initialize(x, y, -10, inDx, inDy);
+}
+
+void Entity::initialize(float x, float y, float z, float inDx, float inDy) {
     xPos = x;
     yPos = y;
+    zPos = z;
     dx = inDx;
     dy = inDy;
     visible = true;

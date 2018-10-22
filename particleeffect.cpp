@@ -3,12 +3,13 @@
 
 ParticleEffect::ParticleEffect(){
 
-   pointLight.position = glm::vec3(0.0,0.0,-10.0);
-   pointLight.ambient = glm::vec3();
-   pointLight.diffuse = glm::vec3();
+   pointLight.position = glm::vec3(0.0,0.0,-9.0);
+   pointLight.ambient = glm::vec3(1.0, 0.0, 1.0);
+   pointLight.diffuse = glm::vec3(1.0, 0.0, 1.0);
    pointLight.constant = 1.0f;
    pointLight.linear = 0.09f;
    pointLight.quadratic = 0.032;
+   pointLight.isOn = false;
 
    reset();
 }
@@ -24,6 +25,7 @@ void ParticleEffect::setPosition(int x, int y) {
 }
 
 void ParticleEffect::start() {
+    pointLight.isOn = true;
     qDebug() << "ParticleEffect::start. Particles count: " << particles.size() << endl;
     for (int i = 0; i < particles.size(); i++) {
         particles[i]->show();
@@ -77,6 +79,7 @@ void ParticleEffect::reset() {
         particle->initialize(xPos, yPos, dx, dy, dz, velocity);
         particles.push_back(particle);
     }
+    pointLight.isOn = false;
 }
 
 void ParticleEffect::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, ParticleShader *shader) {

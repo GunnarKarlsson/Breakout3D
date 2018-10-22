@@ -41,8 +41,8 @@ private:
     Entity *ball;
     bool hasCollided = false;
     int collisionCoolDown = 0;
-    glm::vec3 lightPos = glm::vec3(0.0, 0.0, 0.0);
-    glm::vec3 lightColor = glm::vec3(1.0, 1.0, 1.0);
+    glm::vec3 lightPos;
+    glm::vec3 lightColor;
     Skybox *skybox;
     ParticleEffect *particleEffect;
 };

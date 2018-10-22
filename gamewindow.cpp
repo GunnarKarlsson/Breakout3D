@@ -26,6 +26,9 @@ void GameWindow::initializeGL() {
     qDebug() << "version: " << QLatin1String(reinterpret_cast<const char*>(glGetString(GL_VERSION)));
     qDebug() << "GSLS version: " << QLatin1String(reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION)));
 
+     lightPos = glm::vec3(0.0, 2.0, 1.0);
+     lightColor = glm::vec3(1.0, 1.0, 1.0);
+
     assetManager = new AssetManager();
     assetManager->loadAssets();
 
@@ -50,6 +53,15 @@ void GameWindow::initializeGL() {
         entityTop->setTextureId(assetManager->blockTextureId, assetManager->blockTexCounter);
         entityTop->initialize(i-5, 6, 0.0, 0.0);
         wallBricks.push_back(entityTop);
+    }
+
+    for (int j = 0; j < 11; j++) {
+        for (int k = 0; k < 9; k++) {
+            Entity *entityBack = new Entity();
+            entityBack->setTextureId(assetManager->blockTextureId, assetManager->blockTexCounter);
+            entityBack->initialize(-4+k, -5+j, -11.0, 0.0, 0.0);
+            wallBricks.push_back(entityBack);
+        }
     }
 
     //create target bricks

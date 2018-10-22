@@ -16,6 +16,7 @@ public:
     void update(int minX, int minY, int maxX, int maxY);
     void render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, Shader *shader);
     void initialize(float x, float y, float inDx, float inDy);
+    void initialize(float x, float y, float z, float inDx, float inDy);
     void hide();
     bool isVisible();
     bool setVisible(bool value);
@@ -23,6 +24,7 @@ public:
     void moveRight();
     float xPos;
     float yPos;
+    float zPos;
     float dx;
     float dy;
 private:
