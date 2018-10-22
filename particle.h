@@ -14,7 +14,7 @@ public:
     void show();
     void hide();
     void update();
-    void render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, PointLight &pointLight, ParticleShader *particleShader);
+    void render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, ParticleShader *particleShader);
     bool isAlive();
     void setAlive(bool value);
     void setSize(float s);

@@ -65,13 +65,11 @@ void Particle::update(){
     }
 }
 
-void Particle::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, PointLight &pointLight, ParticleShader *shader){
+void Particle::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, ParticleShader *shader){
     if (visible && alive) {
         glm::mat4 model = glm::mat4(1.0);
         model = glm::translate(model, glm::vec3(xPos, yPos, -10.0 + zPos));
         model = glm::scale(model, glm::vec3(size, size, size));
-
-
 
         shader->use();
         shader->setMat4("model", model);
@@ -80,14 +78,6 @@ void Particle::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos
         shader->setVec3("objectColor", objectColor);
         shader->setVec3("lightPos", lightPos);
         shader->setVec3("lightColor", lightColor);
-
-        shader->setVec3("pointPosition", glm::vec3(0.0,2.0,-10.0));//pointLight.position);
-        shader->setVec3("pointAmbient", pointLight.ambient);
-        shader->setVec3("pointDiffuse", pointLight.diffuse);
-        shader->setFloat("constant", pointLight.constant);
-        shader->setFloat("linear", pointLight.linear);
-        shader->setFloat("quadratic", pointLight.quadratic);
-        shader->setBool("isOn", pointLight.isOn);
 
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);

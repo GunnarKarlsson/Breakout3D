@@ -18,6 +18,7 @@ public:
     void update();
     void render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, ParticleShader *shader);
     void reset();
+    PointLight getPointLight() const;
 private:
     std::clock_t clockStart;
     const double durationLimit = 500000;//50000;

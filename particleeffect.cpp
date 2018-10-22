@@ -3,19 +3,23 @@
 
 ParticleEffect::ParticleEffect(){
 
-   pointLight.position = glm::vec3(0.0,0.0,-9.0);
+   pointLight.position = glm::vec3(0.0,2.0,-7.0);
    pointLight.ambient = glm::vec3(1.0, 0.0, 1.0);
-   pointLight.diffuse = glm::vec3(1.0, 0.0, 1.0);
    pointLight.constant = 1.0f;
    pointLight.linear = 0.09f;
    pointLight.quadratic = 0.032;
    pointLight.isOn = false;
+   //pointLight.intensity = 1.0;
 
    reset();
 }
 
 ParticleEffect::~ParticleEffect(){
     particles.clear();
+}
+
+PointLight ParticleEffect::getPointLight() const {
+    return pointLight;
 }
 
 void ParticleEffect::setPosition(int x, int y) {
@@ -87,7 +91,7 @@ void ParticleEffect::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 li
         return;
     }
     for (int i = 0; i < particles.size(); i++) {
-        particles[i]->render(view, projection, lightPos, lightColor, pointLight, shader);
+        particles[i]->render(view, projection, lightPos, lightColor, shader);
     }
 }
 
