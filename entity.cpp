@@ -49,7 +49,7 @@ bool Entity::setVisible(bool value) {
     this->visible = value;
 }
 
-void Entity::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, Shader *shader) {
+void Entity::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, glm::vec3 pointLightPos, int isOn, Shader *shader) {
   if (visible) {
     shader->setInt("texture0", textureCounter);
     glm::mat4 model = glm::mat4(1.0);
@@ -61,6 +61,7 @@ void Entity::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, 
     shader->setVec3("objectColor", objectColor);
     shader->setVec3("lightPos", lightPos);
     shader->setVec3("lightColor", lightColor);
+    shader->setInt("isOn", isOn);
 
     glActiveTexture(GL_TEXTURE0 + textureCounter);
     glBindTexture(GL_TEXTURE_2D, textureId);

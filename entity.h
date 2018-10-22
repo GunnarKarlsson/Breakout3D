@@ -14,7 +14,7 @@ public:
     void setSize(int size);
     void update();
     void update(int minX, int minY, int maxX, int maxY);
-    void render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, Shader *shader);
+    void render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, glm::vec3 pointLightPos, int isPointLightOn, Shader *shader);
     void initialize(float x, float y, float inDx, float inDy);
     void initialize(float x, float y, float z, float inDx, float inDy);
     void hide();

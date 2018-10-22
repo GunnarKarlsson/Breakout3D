@@ -156,16 +156,19 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     glm::mat4 view = camera->GetViewMatrix();
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 700.0f);
 
+    bool showPointLight = particleEffect->isActive();
+    glm::vec3 pointLightPosition = particleEffect->getPointLight().position;
+
     for (int i = 0; i < wallBricks.size(); i++) {
-        wallBricks[i]->render(view, projection, lightPos, lightColor, basicShader);
+        wallBricks[i]->render(view, projection, lightPos, lightColor, pointLightPosition, showPointLight, basicShader);
     }
 
     for (int i = 0; i < bricks.size(); i++) {
-        bricks[i]->render(view, projection, lightPos, lightColor, basicShader);
+        bricks[i]->render(view, projection, lightPos, lightColor, pointLightPosition, showPointLight, basicShader);
     }
 
-    paddle->render(view, projection, lightPos, lightColor, basicShader);
-    ball->render(view, projection, lightPos, lightColor, basicShader);
+    paddle->render(view, projection, lightPos, lightColor, pointLightPosition, showPointLight, basicShader);
+    ball->render(view, projection, lightPos, lightColor, pointLightPosition, showPointLight, basicShader);
 
     if (particleEffect->isActive()) {
         particleEffect->render(view, projection, lightPos, lightColor, particleShader);

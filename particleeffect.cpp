@@ -9,7 +9,7 @@ ParticleEffect::ParticleEffect(){
    pointLight.linear = 0.09f;
    pointLight.quadratic = 0.032;
    pointLight.isOn = false;
-   //pointLight.intensity = 1.0;
+   pointLight.intensity = 1.0;
 
    reset();
 }

@@ -9,6 +9,7 @@ struct PointLight {
     float linear;
     float quadratic;
     bool isOn;
+    float intensity;
 };
 
 #endif // POINTLIGHT_H
