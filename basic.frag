@@ -10,7 +10,7 @@ uniform vec3 lightPos;
 uniform vec3 lightColor;
 uniform vec3 objectColor;
 
-uniform vec3 pointPosition;
+uniform vec3 pointLightPos;
 uniform bool isOn;
 uniform float intensity;
 
@@ -22,17 +22,17 @@ void main()
     vec3 result = vec3(0.5, 0.5, 0.5) * texture(texture0, TexCoord).rgb;
     if (isOn) {
          vec3 ambient = vec3(1.0,0.0,1.0);
-         vec3 pointPosition = vec3(0.0, 2.0, -7.0);
+         //vec3 pointPosition = vec3(0.0, 2.0, -7.0);
          vec3 pointDiffuse = vec3(1.0, 0.0, 1.0);
 
          // diffuse
          vec3 norm = normalize(Normal);
-         vec3 lightDir = normalize(pointPosition - FragPos);
+         vec3 lightDir = normalize(pointLightPos - FragPos);
          float diff = max(dot(norm, lightDir), 0.0);
          vec3 diffuse = pointDiffuse * diff;
 
          // attenuation
-         float distance  = length(pointPosition - FragPos);
+         float distance  = length(pointLightPos - FragPos);
          float attenuation = 1.0 / (distance*distance*0.05);
 
          ambient  *= attenuation*intensity;

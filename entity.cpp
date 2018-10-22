@@ -61,6 +61,7 @@ void Entity::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, 
     shader->setVec3("objectColor", objectColor);
     shader->setVec3("lightPos", lightPos);
     shader->setVec3("lightColor", lightColor);
+    shader->setVec3("pointLightPos", pointLightPos);
     shader->setInt("isOn", isOn);
     shader->setFloat("intensity", intensity);
 
