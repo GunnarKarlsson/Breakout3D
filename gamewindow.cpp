@@ -11,12 +11,19 @@ GameWindow::GameWindow() : QOpenGLWindow(QOpenGLWindow::NoPartialUpdate) {
 }
 
 GameWindow::~GameWindow() {
+    delete assetManager;
     delete basicShader;
+    delete particleShader;
     delete timer;
     delete camera;
     delete paddle;
     delete ball;
     wallBricks.clear();
+    bricks.clear();
+    delete paddle;
+    delete ball;
+    delete skybox;
+    delete particleEffect;
 }
 
 void GameWindow::initializeGL() {
@@ -160,7 +167,7 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 700.0f);
 
     bool showPointLight = particleEffect->isActive();
-    glm::vec3 pointLightPosition = particleEffect->getPointLight().position;
+    glm::vec3 pointLightPosition = particleEffect->getPointLightPosition();
     float intensity = particleEffect->getIntensity();
 
 

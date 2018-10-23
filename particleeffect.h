@@ -18,7 +18,7 @@ public:
     void update();
     void render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, ParticleShader *shader);
     void reset();
-    PointLight getPointLight() const;
+    glm::vec3 getPointLightPosition() const;
     float getIntensity();
 private:
     std::clock_t clockStart;
@@ -30,8 +30,9 @@ private:
     float particleSize = 0.2;
     bool active = false;
     std::vector<Particle*> particles;
-    PointLight pointLight;
+    glm::vec3 pointLightPosition = glm::vec3(0.0, 0.0, 0.0);
     float intensity;
+    bool pointLightIsOn = false;
 };
 
 #endif // PARTICLEEFFECT_H
