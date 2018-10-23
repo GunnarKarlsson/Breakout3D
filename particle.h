@@ -31,7 +31,7 @@ private:
     float dz = 0.0;
     float velocity = 1.0;
     unsigned int VBO, VAO;
-    glm::vec3 objectColor = glm::vec3(1.0, 1.0, 1.0);
+    glm::vec3 objectColor = glm::vec3(0.0, 1.0, 0.0);
     float vertices[6*6*6] = {
         -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
          0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,

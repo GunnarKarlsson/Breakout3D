@@ -4,7 +4,7 @@
 ParticleEffect::ParticleEffect(){
 
    pointLight.position = glm::vec3(0.0,2.0,-7.0);
-   pointLight.ambient = glm::vec3(1.0, 0.0, 1.0);
+   pointLight.ambient = glm::vec3(0.0, 1.0, 5.0);
    pointLight.constant = 1.0f;
    pointLight.linear = 0.09f;
    pointLight.quadratic = 0.032;
@@ -20,10 +20,10 @@ ParticleEffect::~ParticleEffect(){
 
 float ParticleEffect::getIntensity() {
     if (isActive()) {
-        if (duration < durationLimit/2) {
+        if (duration < durationLimit/4) {
             intensity += 0.02;
-        } else if (intensity > 0.2){
-            intensity -= 0.02;
+        } else if (intensity > 0.0){
+            intensity -= 0.04;
         }
     } else {
         intensity = 0.0;
