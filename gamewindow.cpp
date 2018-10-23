@@ -20,8 +20,6 @@ GameWindow::~GameWindow() {
     delete ball;
     wallBricks.clear();
     bricks.clear();
-    delete paddle;
-    delete ball;
     delete skybox;
     delete particleEffect;
 }
