@@ -38,19 +38,22 @@ void GameWindow::initializeGL() {
 
     //create frame
     for (int i = 0; i < 11; i++) {
+
         //left wall
         Entity *entityLeft = new Entity();
-        entityLeft->setTextureId(assetManager->blockTextureId, assetManager->blockTexCounter);
+        entityLeft->setTextureId(assetManager->blockTextureId);
         entityLeft->initialize(-5, i-5, 0.0, 0.0);
         wallBricks.push_back(entityLeft);
+
         //right wall
         Entity *entityRight = new Entity();
-        entityRight->setTextureId(assetManager->blockTextureId, assetManager->blockTexCounter);
+        entityRight->setTextureId(assetManager->blockTextureId);
         entityRight->initialize(5, i-5, 0.0, 0.0);
         wallBricks.push_back(entityRight);
+
         //top
         Entity *entityTop = new Entity();
-        entityTop->setTextureId(assetManager->blockTextureId, assetManager->blockTexCounter);
+        entityTop->setTextureId(assetManager->blockTextureId);
         entityTop->initialize(i-5, 6, 0.0, 0.0);
         wallBricks.push_back(entityTop);
     }
@@ -58,7 +61,7 @@ void GameWindow::initializeGL() {
     for (int j = 0; j < 11; j++) {
         for (int k = 0; k < 9; k++) {
             Entity *entityBack = new Entity();
-            entityBack->setTextureId(assetManager->blockTextureId, assetManager->blockTexCounter);
+            entityBack->setTextureId(assetManager->blockTextureId);
             entityBack->initialize(-4+k, -5+j, -11.0, 0.0, 0.0);
             wallBricks.push_back(entityBack);
         }
@@ -67,25 +70,25 @@ void GameWindow::initializeGL() {
     //create target bricks
     for (int i = 0; i < 9; i++) {
         Entity *targetTop = new Entity();
-        targetTop->setTextureId(assetManager->targetTextureId, assetManager->targetTexCounter);
+        targetTop->setTextureId(assetManager->targetTextureId);
         targetTop->initialize(-4+i, 5.0, 0.0, 0.0);
         bricks.push_back(targetTop);
         Entity *targetMiddle = new Entity();
-        targetMiddle->setTextureId(assetManager->targetTextureId, assetManager->targetTexCounter);
+        targetMiddle->setTextureId(assetManager->targetTextureId);
         targetMiddle->initialize(-4+i, 4.0, 0.0, 0.0);
         bricks.push_back(targetMiddle);
         Entity *targetBottom = new Entity();
-        targetBottom->setTextureId(assetManager->targetTextureId, assetManager->targetTexCounter);
+        targetBottom->setTextureId(assetManager->targetTextureId);
         targetBottom->initialize(-4+i, 3.0, 0.0, 0.0);
         bricks.push_back(targetBottom);
     }
 
     paddle = new Entity();
-    paddle->setTextureId(assetManager->paddleTextureId, assetManager->paddleTexCounter);
+    paddle->setTextureId(assetManager->paddleTextureId);
     paddle->initialize(0, -5, 0.0, 0.0);
 
     ball = new Entity();
-    ball->setTextureId(assetManager->ballTextureId, assetManager->ballTexCounter);
+    ball->setTextureId(assetManager->ballTextureId);
     ball->setVelocity(1.0);
     ball->initialize(0, 1.0, 0.05, 0.05);
 
@@ -159,6 +162,7 @@ void GameWindow::renderScene(float x, float y, int worldWidth, int worldHeight) 
     bool showPointLight = particleEffect->isActive();
     glm::vec3 pointLightPosition = particleEffect->getPointLight().position;
     float intensity = particleEffect->getIntensity();
+
 
     for (int i = 0; i < wallBricks.size(); i++) {
         wallBricks[i]->render(view, projection, lightPos, lightColor, pointLightPosition, showPointLight, intensity, basicShader);

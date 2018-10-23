@@ -32,9 +32,8 @@ Entity::~Entity() {
     glDeleteBuffers(1, &VBO);
 }
 
-void Entity::setTextureId(unsigned int &id, int texCounter) {
+void Entity::setTextureId(unsigned int &id) {
     textureId = id;
-    textureCounter = texCounter;
 }
 
 void Entity::setVelocity(int velocity) {
@@ -51,7 +50,7 @@ bool Entity::setVisible(bool value) {
 
 void Entity::render(glm::mat4 &view, glm::mat4 &projection, glm::vec3 lightPos, glm::vec3 lightColor, glm::vec3 pointLightPos, int isOn, float intensity, Shader *shader) {
   if (visible) {
-    shader->setInt("texture0", textureCounter);
+    shader->setInt("texture0", 0);
     glm::mat4 model = glm::mat4(1.0);
     model = glm::translate(model, glm::vec3(xPos, yPos, zPos));
     shader->use();

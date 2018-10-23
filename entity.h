@@ -9,7 +9,7 @@ class Entity
 public:
     Entity();
     ~Entity();
-    void setTextureId(unsigned int &id, int texCounter);
+    void setTextureId(unsigned int &id);
     void setVelocity(int velocity);
     void setSize(int size);
     void update();
