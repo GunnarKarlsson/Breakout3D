@@ -79,7 +79,7 @@ private:
     float velocity = 0.0;
     int size = 1;
     int textureCounter = 0;
-    glm::vec3 objectColor = glm::vec3(0.0,1.0,1.0);
+    glm::vec3 objectColor = glm::vec3(1.0,1.0,1.0);
 };
 
 #endif // ENTITY_H

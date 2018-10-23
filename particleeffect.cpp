@@ -20,10 +20,16 @@ ParticleEffect::~ParticleEffect(){
 
 float ParticleEffect::getIntensity() {
     if (isActive()) {
-        if (duration < durationLimit/4) {
-            intensity += 0.02;
+        if (duration < durationLimit/5) {
+            intensity += 0.05;
+            if (intensity > 0.7) {
+                intensity = 0.7;
+            }
         } else if (intensity > 0.0){
-            intensity -= 0.04;
+            intensity -= 0.05;
+            if (intensity < 0.0) {
+                intensity = 0.0;
+            }
         }
     } else {
         intensity = 0.0;
@@ -38,7 +44,7 @@ PointLight ParticleEffect::getPointLight() const {
 void ParticleEffect::setPosition(int x, int y) {
     xPos = x;
     yPos = y;
-    pointLight.position = glm::vec3(xPos, yPos, -10.0);
+    pointLight.position = glm::vec3(xPos, yPos, -9.0);
 }
 
 void ParticleEffect::start() {
