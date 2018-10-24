@@ -35,7 +35,7 @@ glm::vec3 ParticleEffect::getPointLightPosition() const {
 void ParticleEffect::setPosition(int x, int y) {
     xPos = x;
     yPos = y;
-    pointLightPosition = glm::vec3(xPos, yPos, -9.0);
+    pointLightPosition = glm::vec3(xPos, yPos, -5.0);
 }
 
 void ParticleEffect::start() {

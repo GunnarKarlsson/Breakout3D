@@ -34,9 +34,8 @@ void main()
     vec3 result = (ambient + diffuse) * objectColor * texture(texture0, TexCoord).rgb;
 
     if (isOn) {
-         vec3 ambient = vec3(0.0,1.0,0.0);
-         //vec3 pointPosition = vec3(0.0, 2.0, -7.0);
-         vec3 pointDiffuse = vec3(1.0, 0.0, 1.0);
+         vec3 ambient = vec3(0.0,1.0,1.0);
+         vec3 pointDiffuse = vec3(0.0, 1.0, 1.0);
 
          // diffuse
          vec3 norm = normalize(Normal);
