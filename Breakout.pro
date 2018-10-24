@@ -54,7 +54,8 @@ HEADERS += \
     particleeffect.h \
     particleshader.h \
     particle.h \
-    pointlight.h
+    pointlight.h \
+    level.h
 
 FORMS +=
 
@@ -76,7 +77,8 @@ DISTFILES += \
     SKY_UP.png \
     particle.vert \
     particle.frag \
-    level1.txt
+    level1.txt \
+    level2.txt
 
 RESOURCES += \
     resources.qrc

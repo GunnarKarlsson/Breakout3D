@@ -12,6 +12,7 @@
 #include "skybox.h"
 #include "particleeffect.h"
 #include "particleshader.h"
+#include "level.h"
 
 class GameWindow : public QOpenGLWindow, protected QOpenGLFunctions
 {
@@ -30,7 +31,7 @@ private:
     void updateScene(int worldWidth, int worldHeight);
     void renderScene(float x, float y, int worldWidth, int worldHeight);
     void startParticleEffect();
-    void loadLevel();
+    void loadLevels();
     int levelIndex = 0;
     AssetManager *assetManager;
     BasicShader *basicShader;
@@ -39,6 +40,7 @@ private:
     Camera *camera;
     std::vector<Entity*> wallBricks;
     std::vector<Entity*> bricks;
+    std::vector<Level*> levels;
     Entity *paddle;
     Entity *ball;
     bool hasCollided = false;
@@ -47,6 +49,7 @@ private:
     glm::vec3 lightColor;
     Skybox *skybox;
     ParticleEffect *particleEffect;
+    int levelCount = 2;
 };
 
 #endif // MAINWINDOW_H

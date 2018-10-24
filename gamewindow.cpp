@@ -73,25 +73,11 @@ void GameWindow::initializeGL() {
         }
     }
 
-    loadLevel();
+    loadLevels();
 
-    //create target bricks
-    /*
-    for (int i = 0; i < 9; i++) {
-        Entity *targetTop = new Entity();
-        targetTop->setTextureId(assetManager->targetTextureId);
-        targetTop->initialize(-4+i, 5.0, 0.0, 0.0);
-        bricks.push_back(targetTop);
-        Entity *targetMiddle = new Entity();
-        targetMiddle->setTextureId(assetManager->targetTextureId);
-        targetMiddle->initialize(-4+i, 4.0, 0.0, 0.0);
-        bricks.push_back(targetMiddle);
-        Entity *targetBottom = new Entity();
-        targetBottom->setTextureId(assetManager->targetTextureId);
-        targetBottom->initialize(-4+i, 3.0, 0.0, 0.0);
-        bricks.push_back(targetBottom);
-    }
-    */
+    bricks.clear();
+    //load level
+    bricks = levels.at(0)->entities;
 
     paddle = new Entity();
     paddle->setTextureId(assetManager->paddleTextureId);
@@ -132,6 +118,7 @@ void GameWindow::paintGL() {
 }
 
 void GameWindow::updateScene(int worldWidth, int worldHeight) {
+
     ball->update(-5, -10, 5, 5);
     if (haveCollided(paddle, ball) && collisionCoolDown == 0) {
         ball->dy *= -1.0;
@@ -140,9 +127,12 @@ void GameWindow::updateScene(int worldWidth, int worldHeight) {
     } else if (collisionCoolDown > 0) {
         --collisionCoolDown;
     }
+
+    bool hasVisibleBrick = false;
     for (int i = 0; i < bricks.size(); i++) {
         Entity *e = bricks[i];
         if (e->isVisible()) {
+            hasVisibleBrick = true;
             if (haveCollided(e, ball)) {
                 ball->dy *= -1.0;
                 e->setVisible(false);
@@ -155,6 +145,20 @@ void GameWindow::updateScene(int worldWidth, int worldHeight) {
                 break;
             }
         }
+    }
+    qDebug() << "bricks: " << bricks.size() << endl;
+    qDebug() << "levels: " << levels.size() << endl;
+    qDebug() << "level 1: " << levels[1]->entities.size() << endl;
+    if (!hasVisibleBrick) {
+        qDebug() << "bump level " << endl;
+        ++levelIndex;
+        if (levelIndex > (levelCount - 1)) {
+            levelIndex = 0;//TODO: Do Game over
+        }
+        bricks.clear();
+        bricks = levels.at(levelIndex)->entities;
+        ball->setVelocity(0.5+levelIndex);
+        ball->initialize(0, -2.0, 0.05, 0.05);
     }
     if (particleEffect->isActive()) {
         particleEffect->update();
@@ -225,41 +229,46 @@ bool GameWindow::eventFilter( QObject* object, QEvent* event) {
     }
 }
 
-void GameWindow::loadLevel() {
-    QString data;
-    QString filename(":/Level/level" + QString::number(levelIndex+1) + ".txt");
+void GameWindow::loadLevels() {
 
-    QFile file(filename);
-    if(!file.open(QIODevice::ReadOnly)) {
-        qDebug()<<"file not opened"<<endl;
-    }
-    else
-    {
-        qDebug()<<"file opened"<<endl;
-        data = file.readAll();
-    }
+    for (int index = 0; index < levelCount; ++index) {
 
-    file.close();
+        QString data;
+        QString filename(":/Level/level" + QString::number(index+1) + ".txt");
 
-    qDebug()<<data<<endl;
-
-    std::istringstream iss(data.toStdString());
-
-    bricks.clear();
-
-    std::string line = "";
-    int y = 5.0;
-    while (std::getline(iss, line)){
-        QString aLine = QString::fromStdString(line);
-        qDebug() << QString::fromStdString(line);
-        for (int i = 0; i < aLine.length(); i++) {
-            if (aLine[i] == "1") {
-                Entity *targetTop = new Entity();
-                targetTop->setTextureId(assetManager->targetTextureId);
-                targetTop->initialize(-4+i, y, 0.0, 0.0);
-                bricks.push_back(targetTop);
-            }
+        QFile file(filename);
+        if(!file.open(QIODevice::ReadOnly)) {
+            qDebug()<<"file not opened"<<endl;
         }
-        --y;
+        else
+        {
+            qDebug()<<"file opened"<<endl;
+            data = file.readAll();
+        }
+
+        file.close();
+
+        qDebug()<<data<<endl;
+
+        std::istringstream iss(data.toStdString());
+
+        Level *level = new Level();
+
+        std::string line = "";
+        int y = 5.0;
+        int row = 0;
+        while (std::getline(iss, line)){
+            QString aLine = QString::fromStdString(line);
+            for (int i = 0; i < aLine.length(); i++) {
+                if (aLine[i] == "1") {
+                    Entity *targetTop = new Entity();
+                    targetTop->setTextureId(assetManager->targetTextureId);
+                    targetTop->initialize(-4+i, y, 0.0, 0.0);
+                    level->entities.push_back(targetTop);
+                }
+            }
+            --y;
+        }
+        levels.push_back(level);
     }
 }
