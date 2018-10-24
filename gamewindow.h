@@ -30,6 +30,8 @@ private:
     void updateScene(int worldWidth, int worldHeight);
     void renderScene(float x, float y, int worldWidth, int worldHeight);
     void startParticleEffect();
+    void loadLevel();
+    int levelIndex = 0;
     AssetManager *assetManager;
     BasicShader *basicShader;
     ParticleShader *particleShader;

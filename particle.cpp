@@ -58,7 +58,6 @@ void Particle::update(){
         float deltaX = (dx * velocity);
         float deltaY = (dy * velocity);
         float deltaZ = (dz * velocity);
-        qDebug() << deltaX << " " << deltaY << " " << deltaZ;
         xPos = xPos + deltaX;
         yPos = yPos + deltaY;
         zPos = zPos + deltaZ;

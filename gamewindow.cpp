@@ -3,6 +3,7 @@
 #include <math.h>
 #include <string>
 #include <string.h>
+#include <sstream>
 #include "collision.h"
 
 
@@ -72,7 +73,10 @@ void GameWindow::initializeGL() {
         }
     }
 
+    loadLevel();
+
     //create target bricks
+    /*
     for (int i = 0; i < 9; i++) {
         Entity *targetTop = new Entity();
         targetTop->setTextureId(assetManager->targetTextureId);
@@ -87,6 +91,7 @@ void GameWindow::initializeGL() {
         targetBottom->initialize(-4+i, 3.0, 0.0, 0.0);
         bricks.push_back(targetBottom);
     }
+    */
 
     paddle = new Entity();
     paddle->setTextureId(assetManager->paddleTextureId);
@@ -217,5 +222,44 @@ bool GameWindow::eventFilter( QObject* object, QEvent* event) {
         }
     }
         return true;
+    }
+}
+
+void GameWindow::loadLevel() {
+    QString data;
+    QString filename(":/Level/level" + QString::number(levelIndex+1) + ".txt");
+
+    QFile file(filename);
+    if(!file.open(QIODevice::ReadOnly)) {
+        qDebug()<<"file not opened"<<endl;
+    }
+    else
+    {
+        qDebug()<<"file opened"<<endl;
+        data = file.readAll();
+    }
+
+    file.close();
+
+    qDebug()<<data<<endl;
+
+    std::istringstream iss(data.toStdString());
+
+    bricks.clear();
+
+    std::string line = "";
+    int y = 5.0;
+    while (std::getline(iss, line)){
+        QString aLine = QString::fromStdString(line);
+        qDebug() << QString::fromStdString(line);
+        for (int i = 0; i < aLine.length(); i++) {
+            if (aLine[i] == "1") {
+                Entity *targetTop = new Entity();
+                targetTop->setTextureId(assetManager->targetTextureId);
+                targetTop->initialize(-4+i, y, 0.0, 0.0);
+                bricks.push_back(targetTop);
+            }
+        }
+        --y;
     }
 }

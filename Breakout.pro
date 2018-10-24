@@ -75,7 +75,8 @@ DISTFILES += \
     SKY_RIGHT.png \
     SKY_UP.png \
     particle.vert \
-    particle.frag
+    particle.frag \
+    level1.txt
 
 RESOURCES += \
     resources.qrc

@@ -7,4 +7,7 @@
         <file>particle.vert</file>
         <file>particle.frag</file>
     </qresource>
+    <qresource prefix="/Level">
+        <file>level1.txt</file>
+    </qresource>
 </RCC>
