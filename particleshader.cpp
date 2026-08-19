@@ -9,5 +9,5 @@ const char* ParticleShader::getShaderName() {
 }
 
 void ParticleShader::compile() {
-    Shader::compile(":/Shaders/particle.vert",":/Shaders/particle.frag");
+    Shader::compile(":/shaders/particle.vert",":/shaders/particle.frag");
 }

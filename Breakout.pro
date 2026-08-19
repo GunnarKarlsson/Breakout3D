@@ -64,25 +64,26 @@ HEADERS += \
 FORMS +=
 
 DISTFILES += \
-    basic.frag \
-    basic.vert \
-    font.png \
-    minecraft_bricks.png \
-    pink.png \
-    rainbow.png \
-    creeper.png \
-    skybox.vert \
-    skybox.frag \
-    SKY_BACK.png \
-    SKY_DOWN.png \
-    SKY_FRONT.png \
-    SKY_LEFT.png \
-    SKY_RIGHT.png \
-    SKY_UP.png \
-    particle.vert \
-    particle.frag \
-    level1.txt \
-    level2.txt
+    shaders/basic.frag \
+    shaders/basic.vert \
+    assets/font.png \
+    assets/dirt.png \
+    assets/minecraft_bricks.png \
+    assets/pink.png \
+    assets/rainbow.png \
+    assets/creeper.png \
+    shaders/skybox.vert \
+    shaders/skybox.frag \
+    assets/SKY_BACK.png \
+    assets/SKY_DOWN.png \
+    assets/SKY_FRONT.png \
+    assets/SKY_LEFT.png \
+    assets/SKY_RIGHT.png \
+    assets/SKY_UP.png \
+    shaders/particle.vert \
+    shaders/particle.frag \
+    assets/level1.txt \
+    assets/level2.txt
 
 RESOURCES += \
     resources.qrc

@@ -9,5 +9,5 @@ const char* SkyboxShader::getShaderName() {
 }
 
 void SkyboxShader::compile() {
-    Shader::compile(":/Shaders/skybox.vert", ":/Shaders/skybox.frag");
+    Shader::compile(":/shaders/skybox.vert", ":/shaders/skybox.frag");
 }

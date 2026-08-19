@@ -1,26 +1,22 @@
 <RCC>
-    <qresource prefix="/Shaders">
-        <file>basic.vert</file>
-        <file>basic.frag</file>
-        <file>skybox.vert</file>
-        <file>skybox.frag</file>
-        <file>particle.vert</file>
-        <file>particle.frag</file>
-    </qresource>
-    <qresource prefix="/Level">
-        <file>level1.txt</file>
-        <file>level2.txt</file>
-    </qresource>
-    <qresource prefix="/Textures">
-        <file>minecraft_bricks.png</file>
-        <file>pink.png</file>
-        <file>rainbow.png</file>
-        <file>creeper.png</file>
-        <file>SKY_LEFT.png</file>
-        <file>SKY_RIGHT.png</file>
-        <file>SKY_UP.png</file>
-        <file>SKY_DOWN.png</file>
-        <file>SKY_FRONT.png</file>
-        <file>SKY_BACK.png</file>
+    <qresource prefix="/">
+        <file>shaders/basic.vert</file>
+        <file>shaders/basic.frag</file>
+        <file>shaders/skybox.vert</file>
+        <file>shaders/skybox.frag</file>
+        <file>shaders/particle.vert</file>
+        <file>shaders/particle.frag</file>
+        <file>assets/minecraft_bricks.png</file>
+        <file>assets/pink.png</file>
+        <file>assets/rainbow.png</file>
+        <file>assets/creeper.png</file>
+        <file>assets/SKY_LEFT.png</file>
+        <file>assets/SKY_RIGHT.png</file>
+        <file>assets/SKY_UP.png</file>
+        <file>assets/SKY_DOWN.png</file>
+        <file>assets/SKY_FRONT.png</file>
+        <file>assets/SKY_BACK.png</file>
+        <file>assets/level1.txt</file>
+        <file>assets/level2.txt</file>
     </qresource>
 </RCC>

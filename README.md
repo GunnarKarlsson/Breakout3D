@@ -18,11 +18,11 @@ There are two levels loaded from text files. Clearing a level advances to the ne
 
 **Windowing and app:** Qt 5 (`core`, `gui`, `opengl`, `widgets`). The game runs in a `QOpenGLWindow` at 640×640, with a 20 ms update timer.
 
-**Graphics:** OpenGL 4.2 Core Profile and GLSL 4.10. Shaders are compiled at runtime from Qt resources (`resources.qrc`).
+**Graphics:** OpenGL 4.2 Core Profile and GLSL 4.10. Shaders in `shaders/` are compiled at runtime from Qt resources (`resources.qrc`).
 
 **Math:** [GLM](https://github.com/g-truc/glm) for vectors, matrices, and the camera look-at / perspective setup.
 
-**Images:** [stb_image](https://github.com/nothings/stb) (`stb_image.h`) for loading PNG textures and cubemap faces from Qt resources.
+**Images:** [stb_image](https://github.com/nothings/stb) (`stb_image.h`) for loading PNG textures from `assets/` (bundled via Qt resources).
 
 ### Custom engine pieces
 
@@ -30,16 +30,16 @@ These are the in-house 3D components the game is built from:
 
 | Component | Role |
 | --- | --- |
-| `Shader` / `BasicShader` / `SkyboxShader` / `ParticleShader` | Load GLSL from Qt resources, compile programs, set uniforms |
+| `Shader` / `BasicShader` / `SkyboxShader` / `ParticleShader` | Load GLSL from `:/shaders/...`, compile programs, set uniforms |
 | `Entity` | Textured cube mesh (VAO/VBO), transform, visibility, paddle/ball motion |
 | `Camera` | Euler-angle camera and view matrix (`glm::lookAt`) |
-| `AssetManager` | Loads brick, paddle, ball, target, and skybox textures from `:/Textures/...` |
+| `AssetManager` | Loads brick, paddle, ball, target, and skybox textures from `:/assets/...` |
 | `Skybox` | Cubemap background (six sky faces) |
 | `Particle` / `ParticleEffect` | Burst of small cubes plus a decaying point light on brick hits |
 | `collision.h` | AABB overlap tests between entities |
-| `Level` | Grid of target bricks parsed from `level1.txt` / `level2.txt` (`1` = brick) |
+| `Level` | Grid of target bricks parsed from `assets/level1.txt` / `assets/level2.txt` (`1` = brick) |
 
-Lighting is a directional light plus an optional point light driven by the particle effect (see `basic.frag` and `pointlight.h`).
+Lighting is a directional light plus an optional point light driven by the particle effect (see `shaders/basic.frag` and `pointlight.h`).
 
 ## Requirements
 
@@ -50,7 +50,7 @@ Lighting is a directional light plus an optional point light driven by the parti
 
 ## Build and run
 
-The project is a Qt `.pro` app (`Breakout.pro`). Textures, shaders, and levels are compiled into the binary via `resources.qrc`, so the game does not depend on absolute filesystem paths.
+The project is a Qt `.pro` app (`Breakout.pro`). Files in `assets/` and `shaders/` are compiled into the binary via `resources.qrc`, so the game does not depend on absolute filesystem paths.
 
 **1. Install GLM** if it is not already on your compiler’s include path:
 

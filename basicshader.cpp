@@ -10,5 +10,5 @@ const char* BasicShader::getShaderName() {
 }
 
 void BasicShader::compile() {
-    Shader::compile(":/Shaders/basic.vert", ":/Shaders/basic.frag");
+    Shader::compile(":/shaders/basic.vert", ":/shaders/basic.frag");
 }

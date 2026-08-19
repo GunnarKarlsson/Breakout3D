@@ -234,7 +234,7 @@ void GameWindow::loadLevels() {
     for (int index = 0; index < levelCount; ++index) {
 
         QString data;
-        QString filename(":/Level/level" + QString::number(index+1) + ".txt");
+        QString filename(":/assets/level" + QString::number(index+1) + ".txt");
 
         QFile file(filename);
         if(!file.open(QIODevice::ReadOnly)) {

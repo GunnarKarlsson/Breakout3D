@@ -11,18 +11,18 @@ AssetManager::AssetManager(){}
 AssetManager::~AssetManager() {}
 
 void AssetManager::loadAssets() {
-    loadTexture(":/Textures/minecraft_bricks.png", blockTextureId);
-    loadTexture(":/Textures/pink.png", paddleTextureId);
-    loadTexture(":/Textures/rainbow.png", ballTextureId);
-    loadTexture(":/Textures/creeper.png", targetTextureId);
+    loadTexture(":/assets/minecraft_bricks.png", blockTextureId);
+    loadTexture(":/assets/pink.png", paddleTextureId);
+    loadTexture(":/assets/rainbow.png", ballTextureId);
+    loadTexture(":/assets/creeper.png", targetTextureId);
 
     std::vector<QString> faces {
-        ":/Textures/SKY_LEFT.png",
-        ":/Textures/SKY_RIGHT.png",
-        ":/Textures/SKY_UP.png",
-        ":/Textures/SKY_DOWN.png",
-        ":/Textures/SKY_FRONT.png",
-        ":/Textures/SKY_BACK.png"
+        ":/assets/SKY_LEFT.png",
+        ":/assets/SKY_RIGHT.png",
+        ":/assets/SKY_UP.png",
+        ":/assets/SKY_DOWN.png",
+        ":/assets/SKY_FRONT.png",
+        ":/assets/SKY_BACK.png"
     };
     skyboxTextureId = loadSkyboxTextures(faces);
 }
