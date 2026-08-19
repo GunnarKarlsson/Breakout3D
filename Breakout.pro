@@ -22,8 +22,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-INCLUDEPATH += \
-            "/Users/gunnarkarlsson/git/glm"
+# GLM is header-only. Install it (e.g. `brew install glm` or `apt install libglm-dev`),
+# or pass a path: qmake GLM_DIR=/path/to/glm
+isEmpty(GLM_DIR): GLM_DIR = $$(GLM_DIR)
+!isEmpty(GLM_DIR): INCLUDEPATH += $$GLM_DIR
+macx: INCLUDEPATH += /usr/local/include /opt/homebrew/include
+unix:!macx: INCLUDEPATH += /usr/include /usr/local/include
 
 SOURCES += \
         main.cpp \

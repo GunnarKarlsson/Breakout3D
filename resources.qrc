@@ -11,4 +11,16 @@
         <file>level1.txt</file>
         <file>level2.txt</file>
     </qresource>
+    <qresource prefix="/Textures">
+        <file>minecraft_bricks.png</file>
+        <file>pink.png</file>
+        <file>rainbow.png</file>
+        <file>creeper.png</file>
+        <file>SKY_LEFT.png</file>
+        <file>SKY_RIGHT.png</file>
+        <file>SKY_UP.png</file>
+        <file>SKY_DOWN.png</file>
+        <file>SKY_FRONT.png</file>
+        <file>SKY_BACK.png</file>
+    </qresource>
 </RCC>

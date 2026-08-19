@@ -1,7 +1,8 @@
 #ifndef ASSETMANAGER_H
 #define ASSETMANAGER_H
 
-#include <QFile>
+#include <QString>
+#include <vector>
 
 class AssetManager
 {
@@ -25,8 +26,9 @@ public:
     unsigned int skyboxTextureId;
 
 private:
-    void loadTexture(const char* path, unsigned int &textureId);
-    unsigned int loadSkyboxTextures(std::vector<std::string> faces);
+    unsigned char *loadImageData(const QString &path, int *width, int *height, int *nrChannels, int desiredChannels);
+    void loadTexture(const QString &path, unsigned int &textureId);
+    unsigned int loadSkyboxTextures(const std::vector<QString> &faces);
 };
 
 #endif // ASSETMANAGER_H
